@@ -1,4 +1,4 @@
-var today, moment;
+var today, moment = require('moment');
 
 var Kalendae = function (targetElement, options) {
 	if (typeof document.addEventListener !== 'function' && !util.isIE8()) return;

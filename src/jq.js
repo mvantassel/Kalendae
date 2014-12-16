@@ -14,3 +14,4 @@ if (typeof jQuery !== 'undefined' && (typeof document.addEventListener === 'func
 	};
 }
 
+return Kalendae;

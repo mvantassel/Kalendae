@@ -5,9 +5,9 @@
  *	Version 0.5.0                                                   *
  ********************************************************************/
 
-(function (undefined) {
+define(function (require) {
 
-var today, moment;
+var today, moment = require('moment');
 
 var Kalendae = function (targetElement, options) {
 	if (typeof document.addEventListener !== 'function' && !util.isIE8()) return;
@@ -2744,17 +2744,6 @@ var MinPubSub = function(d){
     this['moment'] = moment;
 
 }).call(typeof Kalendae === 'undefined' ? window : Kalendae);
-
-if (!Kalendae.moment) {
-	if (window.moment) {
-		Kalendae.moment = window.moment;
-	} else {
-		throw "Kalendae requires moment.js. You must use kalendae.standalone.js if moment is not available on the page.";
-	}
-}
-
-moment = Kalendae.moment;
-
 //function to get the total number of days since the epoch.
 moment.fn.yearDay = function (input) {
 	var yearday = Math.floor(this._d / 86400000);
@@ -2762,7 +2751,7 @@ moment.fn.yearDay = function (input) {
         this.add({ d : input - yearday });
 };
 
-today = Kalendae.moment().startOf('day');
+today = moment().startOf('day');
 
 if (typeof jQuery !== 'undefined' && (typeof document.addEventListener === 'function' || util.isIE8())) {
 	jQuery.fn.kalendae = function (options) {
@@ -2779,5 +2768,6 @@ if (typeof jQuery !== 'undefined' && (typeof document.addEventListener === 'func
 	};
 }
 
+return Kalendae;
 
-})();
+});

@@ -26,19 +26,19 @@ minified-test: build/kalendae.min.errors
 
 build/kalendae.standalone.js: $(kal) src/header.js
 	cat src/header.js > $@
-	echo "(function (undefined) {" >> $@
+	echo "define(function (require) {" >> $@
 	echo "" >> $@
 	cat $(kal) >> $@
 	echo "" >> $@
-	echo "})();" >> $@
+	echo "});" >> $@
 
 build/kalendae.js: $(kmomentless) src/header.js
 	cat src/header.js > $@
-	echo "(function (undefined) {" >> $@
+	echo "define(function (require) {" >> $@
 	echo "" >> $@
 	cat $(kmomentless) >> $@
 	echo "" >> $@
-	echo "})();" >> $@
+	echo "});" >> $@
 
 build/kalendae.min.js: build/kalendae.js
 	cat src/header.js > $@
